@@ -1,21 +1,17 @@
 pipeline {
     agent any
     stages{
-        stage('Test') {
+        stage('Docker') {
             steps {
-                sh 'ls -a'
-                sh 'pwd'
+                sh 'docker build -t "flask-app"'
+                sh 'docker run -d -p 5000:5000 "flask-app" flask-app'
             }
         }
-        stage('Build') {
+        stage('Docker 2') {
             steps {
-                sh 'touch example.txt'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'echo hello >> example.txt'
-                sh 'cat example.txt'
+                sh 'cd "nginx"'
+                sh 'docker build -t "nginx"'
+                sh 'docker run -d -p 80:80 "reverse-proxy" nginx'
             }
         }
     }
