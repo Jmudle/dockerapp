@@ -16,15 +16,7 @@ pipeline {
                     sh 'sudo docker run -d -p 5000:5000 --name flask-app --network new-network flaskapp'
                 }
             }
-        }
-        stage('Build and Run NGINX Proxy') {
-            steps {
-                script {
-                    sh 'cd nginx'
-                    sh 'sudo docker build -t nginx .'
-                    sh 'sudo docker run -d -p 80:80 --name proxy-pass --network new-network nginx'
-                }
-            }
+        
         }
     }
 }
