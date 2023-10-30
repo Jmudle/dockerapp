@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh 'sudo usermod -aG docker $(whoami)'
                 sh 'sudo docker build -t "flask-app" .'
-                sh 'sudo docker run -d -p 5000:5000 "flask-app" flask-app'
+                sh 'sudo docker run -d -p 5000:5000 flask-app "flask-app"'
             }
         }
         stage('Docker 2') {
