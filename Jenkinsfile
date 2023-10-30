@@ -3,6 +3,7 @@ pipeline {
     stages{
         stage('Docker') {
             steps {
+                sh 'sudo usermod -aG docker $(whoami)'
                 sh 'docker build -t "flask-app" .'
                 sh 'docker run -d -p 5000:5000 "flask-app" flask-app'
             }
