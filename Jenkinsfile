@@ -4,13 +4,6 @@ pipeline {
         DOCKER_LOGIN=credentials('DOCKER_LOGIN')
     }
     stages {
-        stage('Docker Setup') {
-            steps {
-                script {
-                    sh 'sudo docker network create new-network'
-                }
-            }
-        }
         stage('Build and Run Flask App') {
             steps {
                 script {
