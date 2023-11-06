@@ -7,6 +7,7 @@ pipeline {
         stage('Docker Setup') {
             steps {
                 script {
+                    sh 'sudo docker network prune'
                     sh 'sudo docker network create new-network'
                 }
             }
