@@ -4,6 +4,12 @@ pipeline {
         DOCKER_LOGIN=credentials('DOCKER_LOGIN')
     }
     stages {
+        stage('Test')
+            steps {
+                script {
+                    sh 'echo "The Tests Are Running"'
+                }
+            }
         stage('Build and Run Flask App') {
             steps {
                 script {
